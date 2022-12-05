@@ -13,10 +13,14 @@ class User < ApplicationRecord
   has_many :relationships, foreign_key: :followed_id, dependent: :destroy
   has_many :follows, through: :relationships, source: :follower
 
-
-  # フォローされた側からのhas_many、自分をフォローしている人の一覧を持ってくる
+　# フォローされた側からのhas_many、自分をフォローしている人の一覧を持ってくる
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: :follower_id, dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :followed
+
+  # DM機能
+  has_many :entries
+  has_many :messages
+  has_many :rooms, through: :entries
 
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
@@ -46,4 +50,4 @@ class User < ApplicationRecord
       @user = User.all
     end
   end
- end
+end
