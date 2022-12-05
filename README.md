@@ -24,4 +24,4 @@ Things you may want to cover:
 * ...
 *
 
-bookers2応用課題
+bookers2応用課題debug終了
